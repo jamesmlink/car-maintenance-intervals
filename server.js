@@ -22,7 +22,7 @@ app.set('view engine', 'ejs')
 
 //connect to Mongo
 const MongoClient = require('mongodb').MongoClient
-MongoClient.connect('mongodb://james:james@ds151137.mlab.com:51137/star-wars-quotes', (err, database) => {
+MongoClient.connect('mongodb://james:james@ds151697.mlab.com:51697/car-maintenance', (err, database) => {
   // create server for browser to connect to (after mongo is connected)
 	if (err) return console.log(err)
 	db = database
@@ -31,12 +31,11 @@ MongoClient.connect('mongodb://james:james@ds151137.mlab.com:51137/star-wars-quo
 	})
 })
 
-// create write method for new quote route
-app.post('/quotes', (req, res) => {
-	//simultaneously create and save quotes collection in mongo db
-  db.collection('quotes').save(req.body, (err, result) => {
+// create write method for new interval route
+app.post('/intervals', (req, res) => {
+	//simultaneously create and save intervals collection in mongo db
+  db.collection('intervals').save(req.body, (err, result) => {
     if (err) return console.log(err)
-    console.log('saved to database')
     res.redirect('/')
   })
 })
@@ -44,42 +43,20 @@ app.post('/quotes', (req, res) => {
 // send response for root directory route 
 // using ES6 convention
 app.get('/', (req, res) => {
-   // find all documents in collection
-  db.collection('quotes').find().toArray((err, result) => { 
+	// find all documents in collection
+  db.collection('intervals').find().toArray((err, result) => { 
     if (err) return console.log(err)
     // renders index.ejs
-    res.render('index.ejs', {quotes: result})
-    console.log(result)
+    res.render('index.ejs', {intervals: result})
   })
 })
 
-//handle update request from main.js
-app.put('/quotes', (req, res) => {
-  //look at mongodb quotes collection
-	db.collection('quotes')
-	//find specific quote with name
-  .findOneAndUpdate({name: 'Yoda'}, {
-    //update quote to what is in the body
-		$set: {
-      name: req.body.name,
-      quote: req.body.quote
-    }
-  }, {
-    sort: {_id: -1},
-		//if there is no matching quote, still update one with upsert
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-		//send results back from server
-    res.send(result)
-  })
-})
 
 //handle delete request from main.jss
-app.delete('/quotes', (req, res) => {
-  db.collection('quotes').findOneAndDelete({name: req.body.name},
+app.delete('/intervals', (req, res) => {
+  db.collection('intervals').findOneAndDelete({name: req.body.name},
   (err, result) => {
     if (err) return res.send(500, err)
-    res.send('A darth vadar quote got deleted')
+    res.send('Interval got deleted')
   })
 })

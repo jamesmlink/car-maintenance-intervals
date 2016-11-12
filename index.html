@@ -11,30 +11,28 @@
 		<hr>
   </header>
 	<section class="intervals">
-		<% for(var i=0; i<intervals.length; i++) { %>
-			<article class="interval">
+		<article class="interval">
 			<ul>
 				<li>
 					<span class="name">Service: </span>
-					<span class="value"><%= intervals[i].service %></span>
+					<span class="value">Change Oil</span>
 				</li>
 				<li>
 					<span class="name">Interval (miles): </span>
-					<span class="value"><%= intervals[i].intervalMiles %></span>
+					<span class="value">5,000</span>
 				</li>
 				<li>
 					<span class="name">Interval (months): </span>
-					<span class="value"><%= intervals[i].intervalMonths %></span>
+					<span class="value">12</span>
 				</li>
 				<li>
 					<span class="name">Whichever Comes: </span>
-					<span class="value"><%= intervals[i].firstOrLast %></span>
+					<span class="value">Last</span>
 				</li>
 			</ul>
 			<button>Delete</button>
 			<hr>
 		</article>
-		<% } %>
 	</section>
 	<section id="new-input">
 		<form action="/intervals" method="POST">
@@ -45,15 +43,15 @@
 				</li>
 				<li>
 					<span class="name">Interval (miles): </span>
-					<input name="intervalMiles" placeholder="5000" type="number"></input>
+					<input name="interval-miles" placeholder="5000" type="number"></input>
 				</li>
 				<li>
 					<span class="name">Interval (months): </span>
-					<input name="intervalMonths" placeholder="12" type="number"></input>
+					<input name="interval-months" placeholder="12" type="number"></input>
 				</li>
 				<li>
 					<span class="name">Whichever Comes: </span>
-					<select name="firstOrLast">
+					<select name="first-or-last">
 						<option>First</option>
 						<option>Last</option>
 					</select>
