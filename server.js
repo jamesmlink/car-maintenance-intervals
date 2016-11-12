@@ -54,9 +54,13 @@ app.get('/', (req, res) => {
 
 //handle delete request from main.jss
 app.delete('/intervals', (req, res) => {
-  db.collection('intervals').findOneAndDelete({name: req.body.name},
+	db.collection('intervals').findOneAndDelete(
+		{ service: req.body.service,
+  	intervalMiles: req.body.intervalMiles,
+  	intervalMonths: req.body.intervalMonths,
+  	firstOrLast: req.body.firstOrLast},
   (err, result) => {
     if (err) return res.send(500, err)
-    res.send('Interval got deleted')
+		res.json('all good')
   })
 })

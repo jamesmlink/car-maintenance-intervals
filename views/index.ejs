@@ -1,66 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Car Maintenance Intervals - 2004 Green Honda Accord</title>
-</head>
-<body>
-	<header>
-		<h1>Car Maintenance Intervals</h1>
-		<h2>2004 Green Honda Accord</h2>
-		<hr>
-  </header>
-	<section class="intervals">
-		<% for(var i=0; i<intervals.length; i++) { %>
-			<article class="interval">
-			<ul>
-				<li>
-					<span class="name">Service: </span>
-					<span class="value"><%= intervals[i].service %></span>
-				</li>
-				<li>
-					<span class="name">Interval (miles): </span>
-					<span class="value"><%= intervals[i].intervalMiles %></span>
-				</li>
-				<li>
-					<span class="name">Interval (months): </span>
-					<span class="value"><%= intervals[i].intervalMonths %></span>
-				</li>
-				<li>
-					<span class="name">Whichever Comes: </span>
-					<span class="value"><%= intervals[i].firstOrLast %></span>
-				</li>
-			</ul>
-			<button>Delete</button>
+	<head>
+		<meta charset="UTF-8">
+		<title>Car Maintenance Intervals - 2004 Green Honda Accord</title>
+	</head>
+	<body>
+		<header>
+			<h1>Car Maintenance Intervals</h1>
+			<h2>2004 Green Honda Accord</h2>
 			<hr>
-		</article>
-		<% } %>
-	</section>
-	<section id="new-input">
-		<form action="/intervals" method="POST">
-			<ul>
-				<li>
-					<span class="name">Service: </span>
-					<input name="service" placeholder="Change Oil" type="text"></input>
-				</li>
-				<li>
-					<span class="name">Interval (miles): </span>
-					<input name="intervalMiles" placeholder="5000" type="number"></input>
-				</li>
-				<li>
-					<span class="name">Interval (months): </span>
-					<input name="intervalMonths" placeholder="12" type="number"></input>
-				</li>
-				<li>
-					<span class="name">Whichever Comes: </span>
-					<select name="firstOrLast">
-						<option>First</option>
-						<option>Last</option>
-					</select>
-				</li>
-			</ul>
-			<button type="submit">Save New</button>
-		</form>
-	</section>
-</body>
+		</header>
+		<section id="new-input">
+			<h3>Add New Service</h3>
+			<form action="/intervals" method="POST">
+				<ul>
+					<li>
+						<span class="name">Service: </span>
+						<input name="service" placeholder="Change Oil" type="text"></input>
+					</li>
+					<li>
+						<span class="name">Interval (miles): </span>
+						<input name="intervalMiles" placeholder="5000" type="number"></input>
+					</li>
+					<li>
+						<span class="name">Interval (months): </span>
+						<input name="intervalMonths" placeholder="12" type="number"></input>
+					</li>
+					<li>
+						<span class="name">Whichever Comes: </span>
+						<select name="firstOrLast">
+							<option>First</option>
+							<option>Last</option>
+						</select>
+					</li>
+				</ul>
+				<button type="submit">Save New</button>
+			</form>
+			<hr>
+		</section>
+		<section class="intervals">
+			<h3>Existing Service Intervals</h3>
+			<% for(var i=0; i<intervals.length; i++) { %>
+				<article class="interval">
+				<ul>
+					<li>
+						<span class="name">Service: </span>
+						<span class="value svc-value"><%= intervals[i].service %></span>
+					</li>
+					<li>
+						<span class="name">Interval (miles): </span>
+						<span class="value miles-value"><%= intervals[i].intervalMiles %></span>
+					</li>
+					<li>
+						<span class="name">Interval (months): </span>
+						<span class="value months-value"><%= intervals[i].intervalMonths %></span>
+					</li>
+					<li>
+						<span class="name">Whichever Comes: </span>
+						<span class="value first-last-value"><%= intervals[i].firstOrLast %></span>
+					</li>
+				</ul>
+				<button class="delete">Delete</button>
+				<hr>
+			</article>
+			<% } %>
+		</section>
+		<section if="scripts">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+			<script src="main.js"></script>
+		</section>
+	</body>
 </html>
