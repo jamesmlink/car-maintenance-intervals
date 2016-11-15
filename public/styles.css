@@ -1,0 +1,41 @@
+html{
+	font-family: 'Lato', sans-serif;
+}
+
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+	-webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+	border-style: solid;
+  border-width: 2px;
+	width: 300px;
+	background-color: lightgrey;
+	margin: 1rem;
+	padding: 1rem;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+ul {
+	list-style: none;
+	padding:0;
+	margin-top: 0;
+
+}
+
+button {
+	background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+	padding: 5px 10px;
+}
+
+#new-input {
+	background-color: white;
+}

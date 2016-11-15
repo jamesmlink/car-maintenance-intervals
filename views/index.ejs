@@ -3,49 +3,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Car Maintenance Intervals - 2004 Green Honda Accord</title>
+		<link rel="stylesheet" href="styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
 	</head>
 	<body>
 		<header>
 			<h1>Car Maintenance Intervals</h1>
 			<h2>2004 Green Honda Accord</h2>
-			<hr>
 		</header>
-		<section id="new-input">
-			<h3>Add New Service</h3>
-			<form action="/intervals" method="POST">
-				<ul>
-					<li>
-						<span class="name">Service: </span>
-						<input name="service" placeholder="Change Oil" type="text"></input>
-					</li>
-					<li>
-						<span class="name">Interval (miles): </span>
-						<input name="intervalMiles" placeholder="5000" type="number"></input>
-					</li>
-					<li>
-						<span class="name">Interval (months): </span>
-						<input name="intervalMonths" placeholder="12" type="number"></input>
-					</li>
-					<li>
-						<span class="name">Whichever Comes: </span>
-						<select name="firstOrLast">
-							<option>First</option>
-							<option>Last</option>
-						</select>
-					</li>
-				</ul>
-				<button type="submit">Save New</button>
-			</form>
-			<hr>
-		</section>
-		<section class="intervals">
-			<h3>Existing Service Intervals</h3>
+		<section class="intervals flex-container">
 			<% for(var i=0; i<intervals.length; i++) { %>
-				<article class="interval">
+			<article class="interval flex-item">
 				<ul>
 					<li>
-						<span class="name">Service: </span>
-						<span class="value svc-value"><%= intervals[i].service %></span>
+						<span class="name bold">Service: </span>
+						<span class="value svc-value bold"><%= intervals[i].service %></span>
 					</li>
 					<li>
 						<span class="name">Interval (miles): </span>
@@ -61,11 +33,41 @@
 					</li>
 				</ul>
 				<button class="delete">Delete</button>
-				<hr>
 			</article>
 			<% } %>
+			<article id="new-input" class="flex-item">
+				<form action="/intervals" method="POST">
+					<ul>
+						<li>
+							<span class="name bold">Service: </span>
+							<br>
+							<input name="service" placeholder="Change Oil" type="text"></input>
+						</li>
+						<li>
+							<span class="name">Interval (miles): </span>
+							<br>
+							<input name="intervalMiles" placeholder="5000" type="number"></input>
+						</li>
+						<li>
+							<span class="name">Interval (months): </span>
+							<br>
+							<input name="intervalMonths" placeholder="12" type="number"></input>
+						</li>
+						<li>
+							<span class="name">Whichever Comes: </span>
+							<br>
+							<select name="firstOrLast">
+								<option>First</option>
+								<option>Last</option>
+							</select>
+						</li>
+					</ul>
+					<button type="submit">Save New</button>
+				</form>
+			</article>
 		</section>
-		<section if="scripts">
+			
+		<section id="scripts">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 			<script src="main.js"></script>
 		</section>
